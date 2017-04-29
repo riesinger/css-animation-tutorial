@@ -1,84 +1,96 @@
 .playlist {
     transform: translateY(0);
     transition: all .2s ease-in-out;
-	transition-delay: .2s;
+    transition-delay: .2s;
 }
 
 main.playing .playlist {
     transform: translateY(100%);
-	transition-delay: 0s;
+    transition-delay: 0s;
 }
 
 .current-playing {
-	transition: height .2s ease-in-out;
-	will-change: height;
+    transition: height .2s ease-in-out;
+    will-change: height;
 }
 
 .fab {
-	transition: transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
 }
 
 main.playing .current-playing {
-	transform-origin: top;
-	height: 100%;
+    height: 100%;
 }
 
 main.playing .fab {
-	transform: translate(-300px, calc(-50vh + 16px));
+    transform: translate(-300px, calc(-50vh + 16px));
 }
 
 .current-playing .cover {
-	transition: all .2s ease-in-out;
-	transform-origin: top left;
-	clip-path: circle(100vh at 50% 50%);
+    transition: all .2s ease-in-out;
+    transform-origin: top left;
+    border-radius: 0;
 }
 
 main.playing .current-playing .cover {
-	clip-path: circle(19vh at 50% 50%);
-	width: 40vh;
-	transform: translate(-50%, -50%);
-	animation: turntable-rotate 2s linear infinite;
-	animation-delay: .5s;
+    width: 40vh;
+    transform: translate(-50%, -50%);
+    animation: turntable-rotate 2s linear infinite;
+    animation-delay: .5s;
+    border-radius: 50%;
+}
+
+
+@supports (clip-path: circle()) {
+    .current-playing .cover {
+        clip-path: circle(100vh at 50% 50%);
+        border-radius: 0;
+    }
+
+    main.playing .current-playing .cover {
+        clip-path: circle(19vh at 50% 50%);
+        border-radius: 0;
+    }
 }
 
 .current-playing .info {
-	transition: background .2s ease-in-out;
+    transition: background .2s ease-in-out;
 }
 
 main.playing .current-playing .info {
-	background: transparent;
+    background: transparent;
 }
 
 .current-playing .song-info {
-	transition: transform .2s ease-in-out, left .2s ease-in-out;
+    transition: transform .2s ease-in-out, left .2s ease-in-out;
 }
 
 main.playing .current-playing .song-info {
-	left: 50%;
-	transform: translate(-50%, -80vh);
+    left: 50%;
+    transform: translate(-50%, -80vh);
 }
 
 .current-playing .song-info > * {
-	transition: font-size .2s ease-in-out;
+    transition: font-size .2s ease-in-out;
 }
 
 main.playing .current-playing .song-info > * {
-	font-size: 36px;
+    font-size: 36px;
 }
 
 .current-playing .progress {
-	transition: margin-right: .2s ease-in-out;
+    transition: margin-right: .2s ease-in-out;
 }
 
 main.playing .current-playing .progress {
-	margin-right: 0;
+    margin-right: 0;
 }
 
 @keyframes turntable-rotate {
-	from {
-		transform: rotate(0deg) translate(-50%, -50%);
-	}
-	to {
-		transform: rotate(360deg) translate(-50%, -50%);
-	}
+    from {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+    to {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
 }
